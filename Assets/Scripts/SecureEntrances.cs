@@ -5,18 +5,16 @@ using UnityEngine.Events;
 
 public class SecureEntrances : MonoBehaviour
 {
-    [SerializeField] private string _name = null;
-
-    private bool isNearEntrance = false;
+    [SerializeField] private string _name = null;   
 
     public string Name => _name;
-    public bool IsNearEntrance => isNearEntrance;
+    public bool IsNearEntrance { get; private set; }
 
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.TryGetComponent<Player>(out Player player))
         {
-            isNearEntrance = true;
+            IsNearEntrance = true;
         }
     }
 
@@ -24,7 +22,7 @@ public class SecureEntrances : MonoBehaviour
     {
         if (collision.TryGetComponent<Player>(out Player player))
         {
-            isNearEntrance = false;
+            IsNearEntrance = false;
         }
     }
 }
