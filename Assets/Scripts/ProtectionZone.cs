@@ -5,50 +5,50 @@ using UnityEngine.Events;
 
 public class ProtectionZone : MonoBehaviour
 {
-    [SerializeField] private GameObject _parrentProtectionZone = null;
-    [SerializeField] private UnityEvent _houseAlarmSetOn = new UnityEvent();
-    [SerializeField] private UnityEvent _houseAlarmSetOff = new UnityEvent();
+    [SerializeField] private GameObject _alarmActivationAreaParent = null;
+    [SerializeField] private UnityEvent _entered = new UnityEvent();
+    [SerializeField] private UnityEvent _exited = new UnityEvent();
 
-    private ControlledAreaAlarm[] _areas;
+    private ControlledArea[] _areas;
 
-    private bool _isInsade = false;
-    private bool _сurrentState = false;
+    private bool _isInside = false;
+    private bool _currentAlarmState = false;
 
     public event UnityAction AlarmSetOn
     {
-        add => _houseAlarmSetOn.AddListener(value);
-        remove => _houseAlarmSetOn.RemoveListener(value);
+        add => _entered .AddListener(value);
+        remove => _entered .RemoveListener(value);
     }
 
     public event UnityAction AlarmSetOff
     {
-        add => _houseAlarmSetOff.AddListener(value);
-        remove => _houseAlarmSetOff.RemoveListener(value);
+        add => _exited.AddListener(value);
+        remove => _exited.RemoveListener(value);
     }
 
-    private void СheckAlarm()
+    private void ChangeAlarmStatus()
     {
-        _isInsade = false;
+        _isInside = false;
 
         foreach (var area in _areas)
         {
-            if (area.IsInsade)
+            if (area.IsInside)
             {
-                _isInsade = true;                
+                _isInside = true;                
             }
         }
 
-        if (_isInsade != _сurrentState)
+        if (_isInside != _currentAlarmState)
         {
-            if (_isInsade)
+            if (_isInside)
             {                
-                _сurrentState = true;
-                _houseAlarmSetOn?.Invoke();
+                _currentAlarmState = true;
+                _entered ?.Invoke();
             }
             else
             {                
-                _сurrentState = false;
-                _houseAlarmSetOff?.Invoke();
+                _currentAlarmState = false;
+                _exited?.Invoke();
             }
         }
 
@@ -56,29 +56,29 @@ public class ProtectionZone : MonoBehaviour
 
     private void OnEnable()
     {
-        _areas = _parrentProtectionZone.GetComponentsInChildren<ControlledAreaAlarm>();
+        _areas = _alarmActivationAreaParent.GetComponentsInChildren<ControlledArea>();
 
         foreach (var area in _areas)
         {            
-            area.Entered += Area_Entered;
-            area.Exited += Area_Exited;
+            area.Entered += EnteredArea;
+            area.Exited += ExitedArea;
         }
     }
 
-    private void Area_Exited()
+    private void ExitedArea()
     {
-        СheckAlarm();
+        ChangeAlarmStatus();
     }
 
-    private void Area_Entered()
+    private void EnteredArea()
     {
-        if (_isInsade)
+        if (_isInside)
         {
             return;
         }
         else
         {
-            СheckAlarm();
+            ChangeAlarmStatus();
         }
     }
 
@@ -86,8 +86,8 @@ public class ProtectionZone : MonoBehaviour
     {
         foreach (var area in _areas)
         {            
-            area.Entered -= Area_Entered;
-            area.Exited -= Area_Exited;
+            area.Entered -= EnteredArea;
+            area.Exited -= ExitedArea;
         }
     }
 }

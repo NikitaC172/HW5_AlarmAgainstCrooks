@@ -226,7 +226,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _distance: 5
-  _isOpen: IsOpen
 --- !u!1 &82739690
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,8 +626,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc534ad48d98aa844a42d820acbe8e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parrentProtectionZone: {fileID: 1904810588}
-  _houseAlarmSetOn:
+  _alarmActivationAreaParent: {fileID: 1904810588}
+  _entered:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1352063152}
@@ -637,7 +636,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 10
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -653,7 +652,7 @@ MonoBehaviour:
           m_StringArgument: "\u0410\u043A\u0442\u0438\u0432\u0438\u0440\u043E\u0432\u0430\u043D\u0430"
           m_BoolArgument: 0
         m_CallState: 2
-  _houseAlarmSetOff:
+  _exited:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1352063152}
@@ -675,7 +674,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: "\u0414\u0435\u0430\u043A\u0442\u0438\u0432\u0438\u0440\u043E\u0432\u0430\u043D\u0430"
+          m_StringArgument: "\u0412 \u043E\u0436\u0438\u0434\u0430\u043D\u0438\u0438"
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!224 &287374713 stripped
@@ -733,10 +732,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 987943ce15e1bcd48b1ed6045bab7aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parrentSecureEntrances: {fileID: 1321179805}
+  _entrancesParent: {fileID: 1321179805}
   _houseAlarm: {fileID: 252221206}
-  _textEntranceEnter: {fileID: 1630058430}
-  _textEntranceExit: {fileID: 1666210684}
+  _textEntranceEnter: {fileID: 1630058432}
+  _textEntranceExit: {fileID: 1666210686}
 --- !u!1001 &363745834
 PrefabInstance:
   m_ObjectHideFlags: 0

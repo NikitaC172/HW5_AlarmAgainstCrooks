@@ -6,17 +6,17 @@ using UnityEngine.UI;
 
 public class UIText : MonoBehaviour
 {
-    [SerializeField] private GameObject _parrentSecureEntrances = null;
+    [SerializeField] private GameObject _entrancesParent = null;
     [SerializeField] private GameObject _houseAlarm = null;
-    [SerializeField] private GameObject _textEntranceEnter = null;
-    [SerializeField] private GameObject _textEntranceExit = null;
+    [SerializeField] private Text _textEntranceEnter = null;
+    [SerializeField] private Text _textEntranceExit = null;
 
     private SecureEntrances[] _entrances;
     private ProtectionZone _houseAlarmObject;
 
     private void OnEnable()
     {
-        _entrances = _parrentSecureEntrances.GetComponentsInChildren<SecureEntrances>();
+        _entrances = _entrancesParent.GetComponentsInChildren<SecureEntrances>();
         _houseAlarmObject = _houseAlarm.GetComponent<ProtectionZone>();
         _houseAlarmObject.AlarmSetOn += ChangeTextEnter;
         _houseAlarmObject.AlarmSetOff += ChangeTextExit;
@@ -39,20 +39,17 @@ public class UIText : MonoBehaviour
     }
 
     private void ChangeTextExit()
-    {
-        var textExit = _textEntranceExit.GetComponent<Text>();
+    {        
         string name = FindEnrance();
 
-        textExit.text = name;
+        _textEntranceExit.text = name;
     }
 
     private void ChangeTextEnter()
     {
-        var textEnter = _textEntranceEnter.GetComponent<Text>();
-        var textExit = _textEntranceExit.GetComponent<Text>();
-        textExit.text = null;
+        _textEntranceExit.text = null;
         string name = FindEnrance();
-        textEnter.text = name;
+        _textEntranceEnter.text = name;
     }
 
     private void OnDisable()

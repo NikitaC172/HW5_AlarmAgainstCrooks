@@ -16,9 +16,9 @@ public class DoorOpener : MonoBehaviour
         {
             if (Physics.Raycast(transform.position, transform.forward, out _hit, _distance))
             {          
-                if (_hit.collider.TryGetComponent<Door>(out Door Door))
+                if (_hit.collider.TryGetComponent<Door>(out Door door))
                 {
-                    Door.Use();
+                    door.Use();
                 }
             }
         }

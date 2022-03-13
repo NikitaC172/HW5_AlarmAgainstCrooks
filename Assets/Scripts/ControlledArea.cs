@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ControlledAreaAlarm : MonoBehaviour
+public class ControlledArea : MonoBehaviour
 {
     private UnityEvent _entered = new UnityEvent();
     private UnityEvent _exited = new UnityEvent();
 
-    private bool isInside;
-
-    public bool IsInsade => isInside;
+    public bool IsInside { get; private set; }
 
     public event UnityAction Entered
     {
@@ -27,8 +25,8 @@ public class ControlledAreaAlarm : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.TryGetComponent<Player>(out Player player))
-        {            
-            isInside = true;
+        {
+            IsInside = true;
             _entered?.Invoke();
         }
     }
@@ -36,8 +34,8 @@ public class ControlledAreaAlarm : MonoBehaviour
     private void OnTriggerExit(Collider collision)
     {
         if (collision.TryGetComponent<Player>(out Player player))
-        {            
-            isInside = false;
+        {
+            IsInside = false;
             _exited?.Invoke();
         }
     }
