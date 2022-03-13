@@ -66,13 +66,14 @@
   <ItemGroup>
     <Compile Include="Assets\AnimatedDoor.cs" />
     <Compile Include="Assets\ModularFirstPersonController\FirstPersonController\FirstPersonController.cs" />
-    <Compile Include="Assets\Scripts\AlarmAnimationActivate.cs" />
+    <Compile Include="Assets\Scripts\Alarm.cs" />
     <Compile Include="Assets\Scripts\ControlledAreaAlarm.cs" />
     <Compile Include="Assets\Scripts\DoorOpen.cs" />
+    <Compile Include="Assets\Scripts\OldNotUsed\AlarmAnimationActivate.cs" />
+    <Compile Include="Assets\Scripts\OldNotUsed\SoundAlarm.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\ProtectionZone.cs" />
     <Compile Include="Assets\Scripts\SecureEntrances.cs" />
-    <Compile Include="Assets\Scripts\SoundAlarm.cs" />
     <Compile Include="Assets\Scripts\UIText.cs" />
     <Reference Include="UnityEngine">
       <HintPath>E:/Program Files/unity editor/2019.4.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
