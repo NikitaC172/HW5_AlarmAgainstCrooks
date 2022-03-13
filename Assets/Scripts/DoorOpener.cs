@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class DoorOpen : MonoBehaviour
+public class DoorOpener : MonoBehaviour
 {
     [SerializeField] private float _distance = 5f;
-    [SerializeField] private string _isOpen = "IsOpen";
+    //[SerializeField] private string _isOpen = "IsOpen";
 
     private RaycastHit _hit;
 
@@ -16,10 +16,9 @@ public class DoorOpen : MonoBehaviour
         {
             if (Physics.Raycast(transform.position, transform.forward, out _hit, _distance))
             {          
-                if (_hit.collider.TryGetComponent<AnimatedDoor>(out AnimatedDoor animatedDoor))
+                if (_hit.collider.TryGetComponent<Door>(out Door Door))
                 {
-                    Animator animatorController = _hit.collider.GetComponentInParent<Animator>();
-                    animatorController.SetBool(_isOpen, !animatorController.GetBool(_isOpen));
+                    Door.Use();
                 }
             }
         }

@@ -64,11 +64,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AnimatedDoor.cs" />
     <Compile Include="Assets\ModularFirstPersonController\FirstPersonController\FirstPersonController.cs" />
     <Compile Include="Assets\Scripts\Alarm.cs" />
     <Compile Include="Assets\Scripts\ControlledAreaAlarm.cs" />
-    <Compile Include="Assets\Scripts\DoorOpen.cs" />
+    <Compile Include="Assets\Scripts\Door.cs" />
+    <Compile Include="Assets\Scripts\DoorOpener.cs" />
     <Compile Include="Assets\Scripts\OldNotUsed\AlarmAnimationActivate.cs" />
     <Compile Include="Assets\Scripts\OldNotUsed\SoundAlarm.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
