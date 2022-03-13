@@ -14,26 +14,31 @@ public class Alarm : MonoBehaviour
 
     private float _currentVolume = 0f;
     private float _maxVolume = 1f;
-    private bool _isActive;
+    private bool _isActive = false;
+    private bool _currentState = false;
 
     public void TurnOn()
     {
-        animator.Play(AlarmActvator);
         _isActive = true;
-        _audio.volume = 0f;
-        _audio.Play();
-        StartCoroutine(ChangeVolumeSound(_timeChangeSound));
+
+        if (_currentState == false)
+        {
+            animator.Play(AlarmActvator);
+            _audio.volume = 0f;
+            _audio.Play();
+            StartCoroutine(ChangeVolumeSound(_timeChangeSound));
+        }
     }
 
     public void TurnOff()
     {
-        animator.Play(AlarmIdle);
         _isActive = false;
     }
 
     private IEnumerator ChangeVolumeSound(float timeChangeSound)
     {
         float stepWait = 0.5f;
+        _currentState = true;
         var waitHalfSecond = new WaitForSeconds(stepWait);
 
         while (_isActive)
@@ -53,7 +58,9 @@ public class Alarm : MonoBehaviour
             }
         }
 
+        _currentState = false;
         StopCoroutine(ChangeVolumeSound(_timeChangeSound));
         _audio.Stop();
+        animator.Play(AlarmIdle);
     }
 }

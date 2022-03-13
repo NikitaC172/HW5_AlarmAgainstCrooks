@@ -18,8 +18,8 @@ public class UIText : MonoBehaviour
     {
         _entrances = _parrentSecureEntrances.GetComponentsInChildren<SecureEntrances>();
         _houseAlarmObject = _houseAlarm.GetComponent<ProtectionZone>();
-        _houseAlarmObject.AlarmSetOn += _houseAlarmObject_AlarmSetOn;
-        _houseAlarmObject.AlarmSetOff += _houseAlarmObject_AlarmSetOff;
+        _houseAlarmObject.AlarmSetOn += ChangeTextEnter;
+        _houseAlarmObject.AlarmSetOff += ChangeTextExit;
 
     }
 
@@ -38,7 +38,7 @@ public class UIText : MonoBehaviour
         return name;
     }
 
-    private void _houseAlarmObject_AlarmSetOff()
+    private void ChangeTextExit()
     {
         var textExit = _textEntranceExit.GetComponent<Text>();
         string name = FindEnrance();
@@ -46,7 +46,7 @@ public class UIText : MonoBehaviour
         textExit.text = name;
     }
 
-    private void _houseAlarmObject_AlarmSetOn()
+    private void ChangeTextEnter()
     {
         var textEnter = _textEntranceEnter.GetComponent<Text>();
         var textExit = _textEntranceExit.GetComponent<Text>();
@@ -57,7 +57,7 @@ public class UIText : MonoBehaviour
 
     private void OnDisable()
     {
-            _houseAlarmObject.AlarmSetOn -= _houseAlarmObject_AlarmSetOn;
-            _houseAlarmObject.AlarmSetOff -= _houseAlarmObject_AlarmSetOff;
+            _houseAlarmObject.AlarmSetOn -= ChangeTextEnter;
+            _houseAlarmObject.AlarmSetOff -= ChangeTextExit;
     }
 }
